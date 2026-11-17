@@ -98,7 +98,21 @@ table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
 th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
 th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
 tbody tr:last-child td{border-bottom:none}
-td:first-child{font-weight:600;white-space:nowrap}
+td:first-child{font-weight:600}
+body{overflow-wrap:break-word}
+/* phones: tables become stacked cards, so nothing ever scrolls sideways */
+@media (max-width:640px){
+  .tablebox{overflow-x:visible}
+  table{min-width:0}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:auto}
+  tr{padding-block:10px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child{border-bottom:none}
+  td{border:none;padding:3px 14px}
+  td:first-child{font-family:var(--display);font-size:1.02rem}
+  td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+}
+.uses{display:flex;flex-wrap:wrap;gap:4px 10px}
 
 .phase{display:flex;flex-direction:column;gap:12px}
 .phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
@@ -189,7 +203,7 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
     <li><label><input type="checkbox" id="s2" data-key="s2"><span>Record a 1-minute voice note on your phone: <i class="only-general">"Introduce yourself and describe a normal day in your life."</i><i class="only-quran">"Introduce yourself and describe how you teach Quran to children."</i> Keep it. You will record the same topic in weeks 4, 8 and 12.</span></label></li>
     <li><label><input type="checkbox" id="s3" data-key="s3"><span>Make a notebook (paper or a phone note). First page: <b>My top mistakes</b>, where you collect the mistakes you make more than once. Then three phrase pages: <span class="only-general"><b>Home &amp; family</b>, <b>Out and about</b>, <b>Opinions</b></span><span class="only-quran"><b>Classroom</b>, <b>Parents</b>, <b>Daily life</b></span>.</span></label></li>
     <li><label><input type="checkbox" id="s4" data-key="s4"><span>Install <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> for flashcards (free on Android and computer; on iPhone use the free website <a href="https://ankiweb.net" target="_blank" rel="noopener">AnkiWeb</a>).</span></label></li>
-    <li class="only-general"><label><input type="checkbox" id="s5g" data-key="s5g"><span>Bookmark <a href="https://elllo.org/levels/index-B1-1.htm" target="_blank" rel="noopener">ELLLO B1 lessons</a> and <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a>: short, clear recordings with full transcripts.</span></label></li>
+    <li class="only-general"><label><input type="checkbox" id="s5g" data-key="s5g"><span>Bookmark <a href="https://elllo.org/levels/B1-English-Lessons/index.html" target="_blank" rel="noopener">ELLLO B1 lessons</a> and <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a>: short, clear recordings with full transcripts.</span></label></li>
     <li class="only-quran"><label><input type="checkbox" id="s5q" data-key="s5q"><span>Find this week's prophet story for children in English: search YouTube for <a href="https://www.youtube.com/results?search_query=Omar+and+Hana+stories+of+the+prophets" target="_blank" rel="noopener">Omar &amp; Hana</a> or <a href="https://www.youtube.com/results?search_query=Zaky+One4Kids+prophet+story" target="_blank" rel="noopener">Zaky</a>, and turn on English captions (CC).</span></label></li>
     <li><label><input type="checkbox" id="s6" data-key="s6"><span>Choose your speaking partners: one real person and a free AI voice chat (ChatGPT or Gemini app). See <a href="#practice">Speaking practice</a>.</span></label></li>
     <li><label><input type="checkbox" id="s7" data-key="s7"><span>Switch your phone language to English.</span></label></li>
@@ -202,17 +216,17 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
   <p>Blocks 1 and 3 are the same every day. Block 2 changes by day (see the weekly rhythm). The easy listening fits into time you already have.</p>
   <div class="routine">
     <div class="block"><span class="min">15 min</span><h3>Listen and shadow</h3>
-      <p class="only-general">Play 1 minute of an <a href="https://elllo.org/levels/index-B1-1.htm" target="_blank" rel="noopener">ELLLO B1</a> or <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a> recording (both have transcripts). Listen once, read along once, then speak <i>with</i> the speaker, copying their rhythm and melody. Repeat 3–4 times.</p>
-      <p class="only-quran">Play 1 minute of this week's prophet story for children (Omar &amp; Hana or Zaky, with English captions on). Children's stories use clear, slower English: perfect at B1, and it is exactly the English your students understand. Listen once, read the captions once, then speak <i>with</i> the narrator. Repeat 3–4 times.</p>
+      <p class="only-general">Play 1 minute of an <a href="https://elllo.org/levels/B1-English-Lessons/index.html" target="_blank" rel="noopener">ELLLO B1</a> or <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a> recording (both have transcripts). Listen once, read along once, then speak <i>with</i> the speaker, copying their rhythm and melody. Repeat 3–4 times.</p>
+      <p class="only-quran">Play 1 minute of this week's prophet story for children (<a href="https://www.youtube.com/results?search_query=Omar+and+Hana+stories+of+the+prophets" target="_blank" rel="noopener">Omar &amp; Hana</a> or <a href="https://www.youtube.com/results?search_query=Zaky+One4Kids+prophet+story" target="_blank" rel="noopener">Zaky</a>, with English captions on; each week card below has a direct search for that week's story). Children's stories use clear, slower English: perfect at B1, and it is exactly the English your students understand. Listen once, read the captions once, then speak <i>with</i> the narrator. Repeat 3–4 times.</p>
     </div>
     <div class="block"><span class="min">25 min</span><h3>Today's speaking focus</h3><p>The day's task from the weekly rhythm. Always out loud, and usually recorded.</p></div>
     <div class="block"><span class="min">10 min</span><h3>Phrases and review</h3>
-      <p class="only-general">Add 5 useful phrases from today to your notebook and Anki, plus the correct version of any mistake you made. Review old cards. Say each phrase aloud in a full sentence, not just the word.</p>
-      <p class="only-quran">Add 5 phrases from today to Anki, the correct version of any mistake you made, and the English meaning of 1–2 verses from a short surah you teach (from <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>). Say each one aloud in a full sentence.</p>
+      <p class="only-general">Add 5 useful phrases from today to your notebook and <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a>, plus the correct version of any mistake you made. Review old cards. Say each phrase aloud in a full sentence, not just the word.</p>
+      <p class="only-quran">Add 5 phrases from today to <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a>, the correct version of any mistake you made, and the English meaning of 1–2 verses from a short surah you teach (from <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>). Say each one aloud in a full sentence.</p>
     </div>
     <div class="block"><span class="min">20–30 min</span><h3>Easy listening, anytime</h3>
-      <p class="only-general">While cooking, walking or travelling, listen to something you understand without effort: VOA Learning English stories, ELLLO conversations, or <i>6 Minute English</i> from the BBC once those feel easy. No notes, no pressure. This is where new words quietly come from.</p>
-      <p class="only-quran">While cooking, walking or travelling, listen to more prophet stories for children (Omar &amp; Hana, Zaky). From phase 3, try Mufti Menk's <i>Stories of the Prophets</i>, which is for adults. No notes, no pressure. This is where new words quietly come from.</p>
+      <p class="only-general">While cooking, walking or travelling, listen to something you understand without effort: <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a> stories, <a href="https://elllo.org/levels/B1-English-Lessons/index.html" target="_blank" rel="noopener">ELLLO</a> conversations, or <a href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener"><i>6 Minute English</i> from the BBC</a> once those feel easy. No notes, no pressure. This is where new words quietly come from.</p>
+      <p class="only-quran">While cooking, walking or travelling, listen to more prophet stories for children (<a href="https://www.youtube.com/results?search_query=Omar+and+Hana+stories+of+the+prophets" target="_blank" rel="noopener">Omar &amp; Hana</a>, <a href="https://www.youtube.com/results?search_query=Zaky+One4Kids+prophet+story" target="_blank" rel="noopener">Zaky</a>). From phase 3, try Mufti Menk's <a href="https://theclearevidence.org/aspects-of-life/quran/video-series-lessons-from-the-stories-of-the-prophets-as-in-the-noble-quraan-all-episodes-dr-mufti-ismail-menk-english/" target="_blank" rel="noopener"><i>Stories of the Prophets</i></a>, which is for adults. No notes, no pressure. This is where new words quietly come from.</p>
     </div>
   </div>
   <div class="note"><p><b>The two rules that keep you going.</b> On a busy or tired day, do the <b>10-minute minimum</b>: one shadowing round and one recording. It still counts. And <b>never miss two days in a row</b>: one missed day is normal; two in a row is how plans stop.</p></div>
@@ -225,25 +239,25 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
   <div class="tablebox only-general"><table>
     <thead><tr><th>Day</th><th>Speaking focus (25 min)</th><th>How</th></tr></thead>
     <tbody>
-      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound. Practise the word pairs, then 10 short sentences with that sound. Record and compare with the video.</td></tr>
-      <tr><td>Sunday</td><td>Topic of the week</td><td>Learn 10 phrases for the week's topic from a <a href="https://learnenglish.britishcouncil.org/free-resources/speaking/b1" target="_blank" rel="noopener">British Council B1 speaking</a> lesson or your listening. Record a 1-minute talk about your own life on that topic.</td></tr>
-      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend or exchange partner) about the week's topic. If no one is free, use AI voice chat with the prompt in <a href="#practice">Speaking practice</a>. Spend the last 10 minutes on the corrections.</td></tr>
-      <tr><td>Tuesday</td><td>Fluency drill (3/2/1)</td><td>Retell a short recording you listened to, three times without notes: in 3 minutes, then 2, then 1, recording each. Same content, faster and smoother each time. Finish with one sentence: "I liked it because…"</td></tr>
-      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person: a language-exchange partner or an English-speaking friend. Prepare 3 questions to ask before you start.</td></tr>
-      <tr><td>Thursday</td><td>Role-play</td><td>Act out a real situation from the week's topic (ordering food, booking, asking the way) with AI or a friend. Record it, fix 3 things, do it again.</td></tr>
-      <tr><td>Friday</td><td>Light day</td><td>No new tasks. Watch something you enjoy with English subtitles, review your Anki cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
+      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound (the <b>Watch</b> link on this week's card in the 12-week map, or <a href="https://www.youtube.com/@rachelsenglish" target="_blank" rel="noopener">Rachel's English</a> / <a href="https://www.youtube.com/@EnglishwithLucy" target="_blank" rel="noopener">English with Lucy</a>). Practise the word pairs, then 10 short sentences with that sound. Record and compare with the video. Check words on <a href="https://youglish.com" target="_blank" rel="noopener">YouGlish</a>.</td></tr>
+      <tr><td>Sunday</td><td>Topic of the week</td><td>Learn 10 phrases for the week's topic from a <a href="https://learnenglish.britishcouncil.org/free-resources/speaking/b1" target="_blank" rel="noopener">British Council B1 speaking</a> lesson, the <a href="#phrases">Daily-life phrases</a> below, or the topic videos on this week's card. Record a 1-minute talk about your own life on that topic.</td></tr>
+      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend, or a partner on <a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> / <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a>) about the week's topic. If no one is free, use voice chat in <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> or <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a> with the <a href="#practice">AI prompt</a>. Spend the last 10 minutes on the corrections.</td></tr>
+      <tr><td>Tuesday</td><td>Fluency drill (3/2/1)</td><td>Retell a short recording you listened to this week (<a href="https://elllo.org/levels/B1-English-Lessons/index.html" target="_blank" rel="noopener">ELLLO B1</a> or <a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA</a>), three times without notes: in 3 minutes, then 2, then 1, recording each. Same content, faster and smoother each time. Finish with one sentence: "I liked it because…"</td></tr>
+      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person: a partner on <a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> / <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a> or an English-speaking friend. Prepare 3 questions to ask before you start.</td></tr>
+      <tr><td>Thursday</td><td>Role-play</td><td>Act out a real situation from the week's topic (ordering food, booking, asking the way) with a friend, or with <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> / <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a> voice ("Let's role-play: you are the shop assistant…"). Record it, fix 3 things, do it again.</td></tr>
+      <tr><td>Friday</td><td>Light day</td><td>No new tasks. Watch something you enjoy with English subtitles, review your <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
     </tbody>
   </table></div>
   <div class="tablebox only-quran"><table>
     <thead><tr><th>Day</th><th>Speaking focus (25 min)</th><th>How</th></tr></thead>
     <tbody>
-      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound. Practise the word pairs, then 10 short sentences with that sound. Record and compare with the video.</td></tr>
-      <tr><td>Sunday</td><td>Teaching language</td><td>Learn the week's teaching phrases. Record yourself explaining the week's tajweed topic to an imaginary 8-year-old in 1 minute, using short, simple sentences.</td></tr>
-      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend or exchange partner) about the week's prophet story or teaching topic. If no one is free, use AI voice chat with the prompt in <a href="#practice">Speaking practice</a>. Spend the last 10 minutes on the corrections.</td></tr>
-      <tr><td>Tuesday</td><td>Story drill (3/2/1)</td><td>Tell this week's prophet story in simple English for children, three times without notes: in 3 minutes, then 2, then 1, recording each. End every telling with one lesson the children can learn.</td></tr>
-      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person on everyday topics: a language-exchange partner, an English-speaking friend, or an online study circle. Prepare 3 questions to ask before you start.</td></tr>
-      <tr><td>Thursday</td><td>Mock lesson</td><td>Teach a 3-minute lesson in English to your phone camera. Watch it and write 3 things to fix. Teach it again.</td></tr>
-      <tr><td>Friday</td><td>Jumu'ah, light day</td><td>No new tasks. Watch a short Islamic video for children in English, review your Anki cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
+      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound (the <b>Watch</b> link on this week's card in the 12-week map, or <a href="https://www.youtube.com/@rachelsenglish" target="_blank" rel="noopener">Rachel's English</a> / <a href="https://www.youtube.com/@EnglishwithLucy" target="_blank" rel="noopener">English with Lucy</a>). Practise the word pairs, then 10 short sentences with that sound. Record and compare with the video. Check words on <a href="https://youglish.com" target="_blank" rel="noopener">YouGlish</a>.</td></tr>
+      <tr><td>Sunday</td><td>Teaching language</td><td>Learn the week's teaching phrases from <a href="#phrases">Teaching English</a> below and the teaching videos on this week's card. Record yourself explaining the week's tajweed topic to an imaginary 8-year-old in 1 minute, using short, simple sentences.</td></tr>
+      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend, or a partner on <a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> / <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a>) about the week's prophet story or teaching topic. If no one is free, use voice chat in <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> or <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a> with the <a href="#practice">AI prompt</a>. Spend the last 10 minutes on the corrections.</td></tr>
+      <tr><td>Tuesday</td><td>Story drill (3/2/1)</td><td>Watch this week's prophet story (the <b>Story</b> link on this week's card), then tell it in simple English for children, three times without notes: in 3 minutes, then 2, then 1, recording each. End every telling with one lesson the children can learn.</td></tr>
+      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person on everyday topics: a partner on <a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> / <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a>, an English-speaking friend, or an online study circle. Prepare 3 questions to ask before you start.</td></tr>
+      <tr><td>Thursday</td><td>Mock lesson</td><td>Teach a 3-minute lesson in English to your phone camera, using the <a href="#phrases">tajweed terms and class phrases</a>. For ideas, see <a href="https://www.teachingenglish.org.uk" target="_blank" rel="noopener">TeachingEnglish</a>. Watch it and write 3 things to fix. Teach it again.</td></tr>
+      <tr><td>Friday</td><td>Jumu'ah, light day</td><td>No new tasks. Watch a short Islamic video for children in English (<a href="https://www.youtube.com/results?search_query=Omar+and+Hana+English" target="_blank" rel="noopener">Omar &amp; Hana</a>), review your <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -424,7 +438,7 @@ Rules:
 
   <h3 class="only-general">Listening and shadowing (B1)</h3>
   <ul class="only-general">
-    <li><a href="https://elllo.org/levels/index-B1-1.htm" target="_blank" rel="noopener">ELLLO · B1 lessons</a><span>Short real conversations sorted by level, each with a transcript and quiz. Your main shadowing source.</span></li>
+    <li><a href="https://elllo.org/levels/B1-English-Lessons/index.html" target="_blank" rel="noopener">ELLLO · B1 lessons</a><span>Short real conversations sorted by level, each with a transcript and quiz. Your main shadowing source.</span></li>
     <li><a href="https://learningenglish.voanews.com" target="_blank" rel="noopener">VOA Learning English</a><span>News and stories read more slowly, with transcripts. Great for easy listening.</span></li>
     <li><a href="https://learnenglish.britishcouncil.org/free-resources/speaking/b1" target="_blank" rel="noopener">British Council · B1 speaking</a><span>Short video lessons with useful phrases to listen to and repeat.</span></li>
     <li><a href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener">BBC Learning English</a><span>6 Minute English, with transcripts. A good next step from phase 2.</span></li>
@@ -462,11 +476,11 @@ Rules:
   <div class="tablebox"><table>
     <thead><tr><th>When</th><th>Check</th><th>Target</th></tr></thead>
     <tbody>
-      <tr><td>Week 0</td><td>Speak &amp; Improve test, 1-minute recording</td><td>Your starting point</td></tr>
+      <tr><td>Week 0</td><td><a href="https://speakandimprove.com" target="_blank" rel="noopener">Speak &amp; Improve</a> test, 1-minute recording</td><td>Your starting point</td></tr>
       <tr><td>Week 4</td><td>Re-record the same topic</td><td>Talk for 1 minute without long stops; clear p/b and f/v</td></tr>
-      <tr><td>Week 6</td><td>Speak &amp; Improve test</td><td>Same or higher in every part</td></tr>
+      <tr><td>Week 6</td><td><a href="https://speakandimprove.com" target="_blank" rel="noopener">Speak &amp; Improve</a> test</td><td>Same or higher in every part</td></tr>
       <tr><td>Week 8</td><td>Re-record <span class="only-general">+ a 2-minute story about something that happened to you</span><span class="only-quran">+ a 2-minute prophet story for children</span></td><td>Speak for 2 minutes, mostly in the past tense, linking ideas</td></tr>
-      <tr><td>Week 12</td><td>Speak &amp; Improve + EF SET <span class="only-general">+ a 3-minute opinion talk</span><span class="only-quran">+ a 5-minute mini-lesson</span></td><td><span class="only-general">Talk for 3 minutes on an everyday topic from short notes; some parts at B2 on Speak &amp; Improve</span><span class="only-quran">Teach a 5-minute lesson in English from short notes; some parts at B2 on Speak &amp; Improve</span></td></tr>
+      <tr><td>Week 12</td><td><a href="https://speakandimprove.com" target="_blank" rel="noopener">Speak &amp; Improve</a> + <a href="https://www.efset.org" target="_blank" rel="noopener">EF SET</a> <span class="only-general">+ a 3-minute opinion talk</span><span class="only-quran">+ a 5-minute mini-lesson</span></td><td><span class="only-general">Talk for 3 minutes on an everyday topic from short notes; some parts at B2 on Speak &amp; Improve</span><span class="only-quran">Teach a 5-minute lesson in English from short notes; some parts at B2 on Speak &amp; Improve</span></td></tr>
     </tbody>
   </table></div>
   <h3>After week 12</h3>
@@ -534,6 +548,21 @@ const PLANS = {
     ]
   }
 };
+const YT=q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q).replace(/%20/g,"+");
+const SOUND_Q=[
+  "English pronunciation p and b","English pronunciation f and v","English pronunciation ship sheep short long vowels",
+  "English word stress pronunciation","English consonant clusters pronunciation","English pronunciation ed endings s endings",
+  "English vowels full fool cat cut pronunciation","English sentence stress","English pronunciation ch sh ng",
+  "English intonation questions lists","English linking weak forms pronunciation",null
+];
+const TEACH_Q=[
+  "classroom English phrases for teachers of young children","makharij al huroof explained in English for kids",
+  "harakat sukun shaddah explained in English for kids","madd tajweed explained in English for kids",
+  "noon sakinah izhar idgham explained in English","iqlab ikhfa tajweed explained in English",
+  "ghunnah qalqalah tajweed explained in English","storytelling tips for teachers of young children",
+  "parent teacher meeting English phrases","classroom management phrases English teachers",
+  "short surahs meaning for kids English",null
+];
 const MEM={};
 function store(k,v){
   if(v===undefined){try{const x=localStorage.getItem(k);if(x!==null)return x}catch(e){}return MEM[k]===undefined?null:MEM[k]}
@@ -554,6 +583,19 @@ function renderWeeks(plan){
     const addRow=(label,text,cls)=>{const r=document.createElement("div");r.className="row";const a=document.createElement("span");a.textContent=label;const b=document.createElement("span");b.textContent=text;if(cls)b.className=cls;r.append(a,b);card.appendChild(r)};
     addRow("Sound",SOUNDS[i],"sound ipa");
     cfg.rows.forEach((label,j)=>addRow(label,vals[j]));
+    const links=[];
+    if(SOUND_Q[i])links.push(["▶ Watch: sound",YT(SOUND_Q[i])]);else links.push(["Check words: YouGlish","https://youglish.com"]);
+    if(plan==="general"){
+      links.push(["▶ Topic videos",YT("English speaking practice "+vals[0].split(".")[0])]);
+    }else{
+      if(TEACH_Q[i])links.push(["▶ Teaching",YT(TEACH_Q[i])]);
+      if(/^Prophet/.test(vals[1]))links.push(["▶ Story",YT(vals[1].replace(/:.*/,"")+" story for kids in English")]);
+    }
+    const lr=document.createElement("div");lr.className="row";
+    const ll=document.createElement("span");ll.textContent="Use";
+    const lv=document.createElement("span");lv.className="uses";
+    links.forEach(([t,u])=>{const a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";a.textContent=t;lv.appendChild(a)});
+    lr.append(ll,lv);card.appendChild(lr);
     const cb=top.querySelector("input");
     const k="tqsp-"+id;
     cb.checked=store(k)==="1";
@@ -563,6 +605,10 @@ function renderWeeks(plan){
   });
 }
 
+document.querySelectorAll("table").forEach(t=>{
+  const heads=[...t.querySelectorAll("thead th")].map(th=>th.textContent);
+  t.querySelectorAll("tbody tr").forEach(tr=>[...tr.cells].forEach((td,i)=>{if(heads[i])td.dataset.label=heads[i]}));
+});
 document.querySelectorAll(".checks input[data-key]").forEach(cb=>{
   const k="tqsp-"+cb.dataset.key;
   cb.checked=store(k)==="1";
