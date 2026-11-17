@@ -54,6 +54,16 @@ body[data-plan="general"] .only-quran,
 body[data-plan="quran"] .only-general{display:none!important}
 body[data-plan="none"] section,body[data-plan="none"] footer,body[data-plan="none"] .plan-only{display:none!important}
 body:not([data-plan="none"]) .landing-only{display:none!important}
+/* start screen: compact and fitted to the visible screen; plan pages scroll as normal */
+body[data-plan="none"] .wrap{box-sizing:border-box;min-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));justify-content:center;padding-block:16px;gap:16px}
+body[data-plan="none"] header{gap:10px}
+body[data-plan="none"] .facts{display:none}
+body[data-plan="none"] h1{font-size:clamp(1.6rem,7vw,2.4rem)}
+body[data-plan="none"] .lead{font-size:1rem}
+body[data-plan="none"] .switch{gap:10px}
+body[data-plan="none"] .switch button{padding:14px 16px;gap:4px}
+body[data-plan="none"] .switch button b{font-size:1.2rem}
+body[data-plan="none"] .switch .go{margin-top:2px}
 
 header{display:flex;flex-direction:column;gap:14px}
 .facts{display:flex;flex-wrap:wrap;gap:8px}
