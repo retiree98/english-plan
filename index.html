@@ -13,19 +13,23 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500&display=swap">
 <style>
 /* Layout: start screen with two plan buttons; the chosen plan opens as one reading column; week cards in a wrapping grid; tables scroll in their own box */
+/* Dark-first: dark is the default everywhere; the page's own toggle sets data-look="light" (a soft sage light, no pure white) */
 :root{
-  --bg:#f4f7f5; --surface:#ffffff; --ink:#18302b; --muted:#566b66; --line:#d6e1dd;
-  --accent:#1d6b58; --accent-soft:#e1efe9; --gold:#9a6512; --gold-soft:#f6ecda;
+  --bg:#101917; --surface:#17231f; --ink:#e3ece9; --muted:#9fb3ad; --line:#2a3a35;
+  --accent:#62c3a5; --accent-soft:#1b302a; --gold:#e3ad55; --gold-soft:#2e2617;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
   --arabic:"Noto Naskh Arabic","Traditional Arabic","Segoe UI",serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#101917; --surface:#17231f; --ink:#e3ece9; --muted:#9fb3ad; --line:#2a3a35;
-  --accent:#62c3a5; --accent-soft:#1b302a; --gold:#e3ad55; --gold-soft:#2e2617; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#101917; --surface:#17231f; --ink:#e3ece9; --muted:#9fb3ad; --line:#2a3a35;
-  --accent:#62c3a5; --accent-soft:#1b302a; --gold:#e3ad55; --gold-soft:#2e2617; color-scheme:dark}
+:root[data-look="light"]{
+  --bg:#e9eeeb; --surface:#f3f6f4; --ink:#18302b; --muted:#51655f; --line:#cdd8d3;
+  --accent:#1d6b58; --accent-soft:#d9e8e1; --gold:#8a5a10; --gold-soft:#efe3cc;
+  color-scheme:light;
+}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.look-btn{font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:5px 12px;flex:none}
+.look-btn:hover{border-color:var(--accent)}
 
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
 .wrap{max-width:860px;margin:0 auto;padding-block:32px 64px;
@@ -115,11 +119,15 @@ td:first-child{font-weight:600;white-space:nowrap}
 footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
 @media (prefers-reduced-motion:no-preference){.week,.switch button{transition:background .2s,border-color .2s}}
 </style>
+<script>try{if(localStorage.getItem("tqsp-look")==="light")document.documentElement.dataset.look="light"}catch(e){}</script>
 
 <div class="wrap">
 
 <header>
-  <span class="eyebrow">English speaking · from B1 toward B2</span>
+  <div class="toprow">
+    <span class="eyebrow">English speaking · from B1 toward B2</span>
+    <button type="button" class="look-btn" id="look-btn" aria-label="Switch to light mode">☀ Light</button>
+  </div>
   <h1>Quran Teacher's Speaking Plan</h1>
   <p class="lead landing-only">Two 12-week plans for B1 learners, with the same daily routine. Choose one to open it. Every resource is free.</p>
   <div class="switch landing-only" role="group" aria-label="Choose a plan">
@@ -579,6 +587,18 @@ const syncFromHash=()=>{const h=location.hash.slice(1);setPlan(PLANS[h]?h:"")};
 window.addEventListener("hashchange",syncFromHash);
 window.addEventListener("popstate",syncFromHash);
 syncFromHash();
+
+const lookBtn=document.getElementById("look-btn");
+function applyLook(look){
+  if(look==="light")document.documentElement.dataset.look="light";else delete document.documentElement.dataset.look;
+  lookBtn.textContent=look==="light"?"☾ Dark":"☀ Light";
+  lookBtn.setAttribute("aria-label",look==="light"?"Switch to dark mode":"Switch to light mode");
+}
+applyLook(store("tqsp-look")==="light"?"light":"dark");
+lookBtn.addEventListener("click",()=>{
+  const next=document.documentElement.dataset.look==="light"?"dark":"light";
+  store("tqsp-look",next);applyLook(next);
+});
 
 const btn=document.getElementById("copy-btn");
 btn.addEventListener("click",()=>{
