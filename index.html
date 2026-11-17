@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Quran Teacher's Speaking Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500&display=swap">
+<style>
+/* Layout: one reading column; a two-way plan switch at the top swaps plan-specific blocks; week cards in a wrapping grid; tables scroll in their own box */
+:root{
+  --bg:#f4f7f5; --surface:#ffffff; --ink:#18302b; --muted:#566b66; --line:#d6e1dd;
+  --accent:#1d6b58; --accent-soft:#e1efe9; --gold:#9a6512; --gold-soft:#f6ecda;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --arabic:"Noto Naskh Arabic","Traditional Arabic","Segoe UI",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101917; --surface:#17231f; --ink:#e3ece9; --muted:#9fb3ad; --line:#2a3a35;
+  --accent:#62c3a5; --accent-soft:#1b302a; --gold:#e3ad55; --gold-soft:#2e2617; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101917; --surface:#17231f; --ink:#e3ece9; --muted:#9fb3ad; --line:#2a3a35;
+  --accent:#62c3a5; --accent-soft:#1b302a; --gold:#e3ad55; --gold-soft:#2e2617; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding-block:32px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:700}
+h2{font-size:1.6rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0;max-width:68ch}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lead{font-size:1.1rem;color:var(--muted)}
+ul,ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px}
+.ar{font-family:var(--arabic);font-size:1.15em;direction:rtl;unicode-bidi:isolate}
+.ipa{font-family:"Segoe UI","Noto Sans","Lucida Sans Unicode",sans-serif}
+
+/* plan switching */
+body[data-plan="general"] .only-quran,
+body[data-plan="quran"] .only-general{display:none!important}
+
+header{display:flex;flex-direction:column;gap:14px}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.fact{background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:.9rem;font-weight:500}
+body[data-plan="none"] section,body[data-plan="none"] footer,body[data-plan="none"] .plan-only{display:none!important}
+body:not([data-plan="none"]) .landing-only{display:none!important}
+.switch{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.switch button{font:inherit;text-align:left;cursor:pointer;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:20px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.switch button:hover{border-color:var(--accent)}
+.switch button b{font-family:var(--display);font-size:1.35rem}
+.switch button span{font-size:.92rem;color:var(--muted)}
+.switch .go{font-style:normal;font-weight:600;color:var(--accent);margin-top:6px}
+.switch .last{align-self:flex-start;font-size:.75rem;font-weight:600;background:var(--gold-soft);color:var(--gold);border-radius:999px;padding:2px 10px}
+.planbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.back{font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;background:var(--surface);color:var(--accent);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px}
+.back:hover{border-color:var(--accent)}
+.current{background:var(--accent-soft);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.92rem}
+nav{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.92rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:10px}
+nav a{text-decoration:none;font-weight:500}
+
+.note{background:var(--gold-soft);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0}
+.note p{max-width:none}
+
+.checks{list-style:none;padding:0;gap:8px}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.checks input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+
+.routine{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.block .min{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:600;font-size:.9rem}
+
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;white-space:nowrap}
+
+.phase{display:flex;flex-direction:column;gap:12px}
+.phase-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.weeks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.week{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.week.done{border-color:var(--accent);background:var(--accent-soft)}
+.week-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.week-top b{font-family:var(--display);font-size:1.05rem}
+.week-top label{font-size:.85rem;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+.week-top input{accent-color:var(--accent);width:16px;height:16px}
+.row{display:grid;grid-template-columns:70px 1fr;gap:8px;font-size:.92rem}
+.row span:first-child{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+.sound{color:var(--gold);font-weight:600}
+
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.phrases{list-style:none;padding:0;gap:4px}
+.phrases li{padding:6px 0;border-bottom:1px dashed var(--line)}
+.phrases li:last-child{border-bottom:none}
+
+.prompt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.95rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.copy{align-self:flex-start;font:inherit;font-weight:600;font-size:.9rem;background:var(--accent);color:var(--bg);border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+
+.res{display:flex;flex-direction:column;gap:10px}
+.res h3{margin-top:8px}
+.res ul{list-style:none;padding:0;gap:8px}
+.res li{display:flex;flex-direction:column;gap:0}
+.res li span{color:var(--muted);font-size:.92rem}
+footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.backup{background:var(--surface);border:1.5px solid var(--accent);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.backup h2{font-size:1.3rem}
+.code{font-family:"Consolas","SFMono-Regular",ui-monospace,monospace;font-size:1.25rem;font-weight:600;letter-spacing:.06em;background:var(--accent-soft);border-radius:8px;padding:10px 14px;overflow-wrap:anywhere}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn2{font:inherit;font-weight:600;font-size:.9rem;background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);border-radius:8px;padding:7px 14px;cursor:pointer;text-decoration:none}
+.restore{display:flex;flex-wrap:wrap;gap:8px}
+.restore input{font:inherit;flex:1 1 180px;min-width:0;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 12px;text-transform:uppercase}
+.msg{font-size:.9rem;color:var(--muted)}
+.tips{font-size:.92rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.week,.switch button{transition:background .2s,border-color .2s}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">English speaking · from B2 toward C1</span>
+  <h1>Quran Teacher's Speaking Plan</h1>
+  <p class="lead landing-only">Two 12-week plans with the same daily routine. Choose one to open it. Every resource is free.</p>
+  <div class="switch landing-only" role="group" aria-label="Choose a plan">
+    <button type="button" id="btn-general" data-set="general"><small class="last" id="last-general" hidden>Last opened</small><b>General English</b><span>Everyday topics: shopping, phone calls, health, travel, opinions</span><em class="go">Open plan →</em></button>
+    <button type="button" id="btn-quran" data-set="quran"><small class="last" id="last-quran" hidden>Last opened</small><b>Quran English</b><span>Prophets' stories, tajweed in English, teaching children and talking to parents</span><em class="go">Open plan →</em></button>
+  </div>
+  <div class="planbar plan-only">
+    <button type="button" class="back" id="back-btn">← All plans</button>
+    <span class="current" id="current-plan"></span>
+  </div>
+  <div class="facts">
+    <span class="fact">Start: B2</span>
+    <span class="fact">12 weeks, then repeat at a higher level</span>
+    <span class="fact">45–60 min a day, 6 days a week</span>
+    <span class="fact">+ easy listening in spare moments</span>
+    <span class="fact">Friday is a light day</span>
+    <span class="fact">100% free</span>
+  </div>
+  <nav class="plan-only" aria-label="Sections">
+    <a href="#idea">The idea</a><a href="#setup">Week 0</a><a href="#daily">Daily routine</a><a href="#weekly">Weekly rhythm</a><a href="#map">12-week map</a><a href="#sounds">Pronunciation</a><a href="#phrases" class="only-general">Daily-life phrases</a><a href="#phrases" class="only-quran">Teaching English</a><a href="#practice">Speaking practice</a><a href="#resources">Free resources</a><a href="#progress">Progress</a>
+  </nav>
+</header>
+
+<section id="idea">
+  <span class="eyebrow">The idea</span>
+  <h2>Speaking improves by speaking, out loud, every day</h2>
+  <p>At B2 you already understand most things. What holds speaking back is usually not knowledge but practice: finding words fast, saying sounds clearly, and feeling relaxed. So both plans spend most of the time on your voice: shadowing, recording yourself, talking with AI and real people.</p>
+  <p class="only-general">The <b>General plan</b> builds the English of daily life: small talk, appointments, shopping, health, travel, stories and opinions.</p>
+  <p class="only-quran">The <b>Quran plan</b> uses the material you already love: stories of the prophets told in English, tajweed explained in English, and the meanings of the surahs you teach. About a third of the time (live partner, AI chats) stays on everyday English, so daily life improves too.</p>
+  <p>You also have a rare advantage. Tajweed trained your ear and mouth to notice exact articulation points (<span class="ar">مخارج</span>). Both plans use that skill for English sounds.</p>
+  <h3>Why this works</h3>
+  <ul>
+    <li><b>A balanced diet of English.</b> Paul Nation's "four strands" model gives roughly equal time to listening, speaking, studying phrases and fluency practice. The daily routine follows that balance.</li>
+    <li><b>Shadowing</b> (speaking along with a recording) improves listening and the rhythm of speech.</li>
+    <li><b>Repeating the same task</b> makes speech smoother and more accurate each time. That is why you record, listen and record again, and why the 4/3/2 drill repeats one talk three times.</li>
+    <li><b>Spaced flashcards</b> are one of the strongest findings in learning research: reviewing just before you forget makes words stick.</li>
+    <li><b>Clear before perfect.</b> Research on being understood puts consonants, vowel length and word stress first, so the sounds come in that order.</li>
+  </ul>
+  <div class="note"><p><b>Realistic expectations.</b> Cambridge estimates about 200 hours of guided learning to move up one level. These 12 weeks give about 60 focused hours: enough for a clear jump in confidence, fluency and pronunciation. Reaching a full C1 usually takes 6–12 months, so after week 12 you repeat the cycle with harder material.</p></div>
+</section>
+
+<section id="setup">
+  <span class="eyebrow">Week 0 · one evening</span>
+  <h2>Set up and record your starting point</h2>
+  <ul class="checks">
+    <li><label><input type="checkbox" id="s1" data-key="s1"><span>Take a free speaking test on <a href="https://speakandimprove.com" target="_blank" rel="noopener">Cambridge Speak &amp; Improve</a>. Write down your level for each part. (The scores are automatic, so treat them as a rough guide.)</span></label></li>
+    <li><label><input type="checkbox" id="s2" data-key="s2"><span>Record a 2-minute voice note on your phone: <i class="only-general">"Introduce yourself and describe a normal day in your life."</i><i class="only-quran">"Introduce yourself and describe how you teach Quran to children."</i> Keep it. You will record the same topic in weeks 4, 8 and 12.</span></label></li>
+    <li><label><input type="checkbox" id="s3" data-key="s3"><span>Make a notebook (paper or a phone note). First page: <b>My top mistakes</b>, where you collect the mistakes you make more than once. Then three phrase pages: <span class="only-general"><b>Home &amp; family</b>, <b>Out and about</b>, <b>Opinions</b></span><span class="only-quran"><b>Classroom</b>, <b>Parents</b>, <b>Daily life</b></span>.</span></label></li>
+    <li><label><input type="checkbox" id="s4" data-key="s4"><span>Install <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> for flashcards (free on Android and computer; on iPhone use the free website <a href="https://ankiweb.net" target="_blank" rel="noopener">AnkiWeb</a>).</span></label></li>
+    <li class="only-general"><label><input type="checkbox" id="s5g" data-key="s5g"><span>Subscribe to <i>6 Minute English</i> (BBC) in any podcast app.</span></label></li>
+    <li class="only-quran"><label><input type="checkbox" id="s5q" data-key="s5q"><span>Bookmark Mufti Menk's free English series <a href="https://theclearevidence.org/aspects-of-life/quran/video-series-lessons-from-the-stories-of-the-prophets-as-in-the-noble-quraan-all-episodes-dr-mufti-ismail-menk-english/" target="_blank" rel="noopener">Stories of the Prophets</a> (29 episodes, video and audio).</span></label></li>
+    <li><label><input type="checkbox" id="s6" data-key="s6"><span>Choose your speaking partners: a free AI voice chat (ChatGPT or Gemini app) and one human partner (see <a href="#practice">Speaking practice</a>).</span></label></li>
+    <li><label><input type="checkbox" id="s7" data-key="s7"><span>Switch your phone language to English.</span></label></li>
+  </ul>
+</section>
+
+<section id="daily">
+  <span class="eyebrow">Every day · about 50 minutes, plus easy listening</span>
+  <h2>Daily routine</h2>
+  <p>Blocks 1 and 3 are the same every day. Block 2 changes by day (see the weekly rhythm). The easy listening fits into time you already have.</p>
+  <div class="routine">
+    <div class="block"><span class="min">15 min</span><h3>Listen and shadow</h3>
+      <p class="only-general">Play 1–2 minutes of a <i>6 Minute English</i> episode or a British Council lesson (both have transcripts). Listen once, read along once, then speak <i>with</i> the speaker, copying their rhythm and melody. Repeat 3–4 times.</p>
+      <p class="only-quran">Play 1–2 minutes of this week's prophet story (Mufti Menk's series, or a Yaqeen Institute video with English captions on). Listen once, read the captions once, then speak <i>with</i> the speaker, copying rhythm and melody. Repeat 3–4 times.</p>
+    </div>
+    <div class="block"><span class="min">25 min</span><h3>Today's speaking focus</h3><p>The day's task from the weekly rhythm. Always out loud, and usually recorded.</p></div>
+    <div class="block"><span class="min">10 min</span><h3>Phrases and review</h3>
+      <p class="only-general">Add 5 useful phrases from today to your notebook and Anki, plus the correct version of any mistake you made. Review old cards. Say each phrase aloud in a full sentence, not just the word.</p>
+      <p class="only-quran">Add 5 phrases from today to Anki, the correct version of any mistake you made, and the English meaning of 2–3 verses from a surah you teach (from <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a>). Say each one aloud in a full sentence.</p>
+    </div>
+    <div class="block"><span class="min">20–30 min</span><h3>Easy listening, anytime</h3>
+      <p class="only-general">While cooking, walking or travelling, listen to something you enjoy and understand without effort: older <i>6 Minute English</i> episodes, Luke's English Podcast, TED-Ed. No notes, no pressure. This is where new words quietly come from.</p>
+      <p class="only-quran">While cooking, walking or travelling, listen to something you enjoy and understand without effort: full episodes of Mufti Menk's <i>Stories of the Prophets</i> or a Yaqeen Institute talk. No notes, no pressure. This is where new words quietly come from.</p>
+    </div>
+  </div>
+  <div class="note"><p><b>The two rules that keep you going.</b> On a busy or tired day, do the <b>10-minute minimum</b>: one shadowing round and one recording. It still counts. And <b>never miss two days in a row</b>: one missed day is normal; two in a row is how plans stop.</p></div>
+  <div class="note"><p><b>All day, free:</b> think in English while cooking or walking. Describe what you are doing in your head <span class="only-general">("I'm going to call the clinic and book an appointment")</span><span class="only-quran">("I'm going to prepare tomorrow's lesson on madd")</span>. When a word is missing, note it and look it up later.</p></div>
+</section>
+
+<section id="weekly">
+  <span class="eyebrow">Each week</span>
+  <h2>Weekly rhythm</h2>
+  <div class="tablebox only-general"><table>
+    <thead><tr><th>Day</th><th>Speaking focus (25 min)</th><th>How</th></tr></thead>
+    <tbody>
+      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound. Practise the word pairs, then 10 sentences full of that sound. Record and compare with the video.</td></tr>
+      <tr><td>Sunday</td><td>Topic of the week</td><td>Learn 15 phrases for the week's topic. Record a 2-minute talk about your own life on that topic.</td></tr>
+      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend or exchange partner) about the week's topic. If no one is free, use AI voice chat with the prompt in <a href="#practice">Speaking practice</a>. Spend the last 10 minutes on the corrections.</td></tr>
+      <tr><td>Tuesday</td><td>Fluency drill (4/3/2)</td><td>Retell a podcast episode or short video three times without notes: in 4 minutes, then 3, then 2, recording each. Same content, faster and smoother each time. Finish with 1 minute of your own opinion.</td></tr>
+      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person: a language-exchange partner or an English-speaking friend.</td></tr>
+      <tr><td>Thursday</td><td>Role-play</td><td>Act out a real situation from the week's topic (booking, complaining, asking the way) with AI or a friend. Record it, fix 3 things, do it again.</td></tr>
+      <tr><td>Friday</td><td>Light day</td><td>No new tasks. Watch a documentary or talk you enjoy with English subtitles, review your Anki cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tablebox only-quran"><table>
+    <thead><tr><th>Day</th><th>Speaking focus (25 min)</th><th>How</th></tr></thead>
+    <tbody>
+      <tr><td>Saturday</td><td>Sound of the week</td><td>Watch one pronunciation video on the week's sound. Practise the word pairs, then 10 sentences full of that sound. Record and compare with the video.</td></tr>
+      <tr><td>Sunday</td><td>Teaching language</td><td>Learn the week's teaching phrases. Record yourself explaining the week's tajweed topic to an imaginary 8-year-old in 2 minutes.</td></tr>
+      <tr><td>Monday</td><td>Second conversation</td><td>15 minutes talking with a real person (a sister, friend or exchange partner) about the week's prophet story or teaching topic. If no one is free, use AI voice chat with the prompt in <a href="#practice">Speaking practice</a>. Spend the last 10 minutes on the corrections.</td></tr>
+      <tr><td>Tuesday</td><td>Story drill (4/3/2)</td><td>Tell this week's prophet story in simple English for children three times without notes: in 4 minutes, then 3, then 2, recording each. End every telling with one lesson the children can learn.</td></tr>
+      <tr><td>Wednesday</td><td>Live partner</td><td>30 minutes with a real person on everyday topics: a language-exchange partner, an English-speaking friend, or an online study circle.</td></tr>
+      <tr><td>Thursday</td><td>Mock lesson</td><td>Teach a 5-minute lesson in English to your phone camera. Watch it and write 3 things to fix. Teach it again.</td></tr>
+      <tr><td>Friday</td><td>Jumu'ah, light day</td><td>No new tasks. Listen to an English khutbah or Yaqeen Institute talk, review your Anki cards, and update your top-mistakes list: which ones did you fix this week?</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="map">
+  <span class="eyebrow">12 weeks · three phases</span>
+  <h2>12-week map</h2>
+  <p class="only-general">Each week has one sound to fix (Saturday) and one life topic (Sunday, Monday and Thursday). Tick a week when it is finished; the ticks are saved on this device, separately for each plan.</p>
+  <p class="only-quran">Each week has one sound to fix (Saturday), one tajweed teaching topic (Sunday and Thursday) and one prophet story (daily shadowing and Tuesday). Tick a week when it is finished; the ticks are saved on this device, separately for each plan.</p>
+
+  <div class="phase">
+    <div class="phase-head"><h3>Phase 1 · Weeks 1–4</h3><span class="eyebrow">Clear sounds, daily habit</span></div>
+    <p>Goal: speak every day without stress, and fix the sounds that most confuse listeners.</p>
+    <div class="weeks" id="weeks-1"></div>
+  </div>
+  <div class="phase">
+    <div class="phase-head"><h3>Phase 2 · Weeks 5–8</h3><span class="eyebrow">Fluency and range</span></div>
+    <p>Goal: speak for 2–3 minutes without long pauses, link ideas, and hold a live conversation every week.</p>
+    <div class="weeks" id="weeks-2"></div>
+  </div>
+  <div class="phase">
+    <div class="phase-head"><h3>Phase 3 · Weeks 9–12</h3><span class="eyebrow">Natural rhythm, C1 habits</span></div>
+    <p class="only-general">Goal: sound natural (stress, linking, intonation), give and defend opinions, and talk for 3 minutes on any everyday topic.</p>
+    <p class="only-quran">Goal: sound natural (stress, linking, intonation), handle questions from parents, and teach a full 10-minute lesson in English.</p>
+    <div class="weeks" id="weeks-3"></div>
+  </div>
+</section>
+
+<section id="sounds">
+  <span class="eyebrow">Pronunciation for Arabic speakers · both plans</span>
+  <h2>Use your tajweed ear</h2>
+  <p>You already know where each Arabic letter comes from in the mouth. Many English sounds map neatly onto that knowledge.</p>
+  <div class="tablebox"><table>
+    <thead><tr><th>English sound</th><th>Arabic bridge</th><th>Practise with</th></tr></thead>
+    <tbody>
+      <tr><td class="ipa">/θ/ think, /ð/ this</td><td>Same place as <span class="ar">ث</span> and <span class="ar">ذ</span>. You already have these sounds; just use them.</td><td>think / sink, three / tree, this / dis</td></tr>
+      <tr><td class="ipa">/p/ vs /b/</td><td>/p/ is <span class="ar">ب</span> with no voice and a puff of air. Hold your hand in front of your lips: you should feel the puff on /p/ only.</td><td>pen / Ben, park / bark, pray / bray</td></tr>
+      <tr><td class="ipa">/v/ vs /f/</td><td>/f/ is <span class="ar">ف</span>. /v/ is the same mouth position with the voice on (feel your throat buzz).</td><td>fan / van, fine / vine, safe / save</td></tr>
+      <tr><td class="ipa">Short and long vowels</td><td>Arabic has 3 vowel qualities; English has about 12. Length alone is not enough: the mouth shape changes too.</td><td>ship / sheep, full / fool, cat / cut / cot, bed / bad</td></tr>
+      <tr><td class="ipa">Consonant clusters</td><td>English allows several consonants together. Do not add a vowel before or between them.</td><td>street (not "estreet"), spring, months, asked</td></tr>
+      <tr><td class="ipa">/tʃ/ vs /ʃ/</td><td>/ʃ/ is <span class="ar">ش</span>. /tʃ/ starts with a short /t/ stop.</td><td>chair / share, watch / wash, cheap / sheep</td></tr>
+      <tr><td class="ipa">/ŋ/ sing</td><td>Like the nasal sound in ikhfa' before <span class="ar">ك</span>: the back of the tongue closes, with no /g/ after it.</td><td>sing, long, morning, teaching</td></tr>
+      <tr><td class="ipa">English r</td><td>Not the tapped <span class="ar">ر</span>. The tongue curls back and does not touch the roof of the mouth.</td><td>read, very, correct, Quran</td></tr>
+      <tr><td class="ipa">Word stress</td><td>Like madd, length and strength matter. One syllable in each word is longer and louder.</td><td>TEAcher, eDUcation, PRACtise, underSTAND</td></tr>
+    </tbody>
+  </table></div>
+  <p>Check any word's stress and sound in the <a href="https://dictionary.cambridge.org" target="_blank" rel="noopener">Cambridge Dictionary</a> (UK and US audio), and hear it in real sentences on <a href="https://youglish.com" target="_blank" rel="noopener">YouGlish</a>. The aim is to be clear, not to copy one accent; British and American sources are both fine.</p>
+</section>
+
+<section id="phrases">
+  <!-- General plan: daily-life phrases -->
+  <span class="eyebrow only-general">Everyday English</span>
+  <h2 class="only-general">Daily-life phrases</h2>
+  <p class="only-general">Natural phrases for the situations in the 12-week map. Say each one aloud, then change it to fit your own life.</p>
+  <div class="pairs only-general">
+    <div class="block"><h3>Small talk</h3>
+      <ul class="phrases">
+        <li>How's your week been so far?</li>
+        <li>I've been really busy lately, to be honest.</li>
+        <li>What do you do in your free time?</li>
+        <li>Oh, that sounds lovely!</li>
+        <li>Sorry, I didn't catch that. Could you say it again?</li>
+      </ul></div>
+    <div class="block"><h3>Appointments and calls</h3>
+      <ul class="phrases">
+        <li>Hi, I'd like to book an appointment, please.</li>
+        <li>Do you have anything available on Tuesday morning?</li>
+        <li>Could I speak to someone about my order?</li>
+        <li>Could you spell that for me, please?</li>
+        <li>I'll call back later. Thanks for your help.</li>
+      </ul></div>
+    <div class="block"><h3>Shops and problems</h3>
+      <ul class="phrases">
+        <li>Excuse me, do you have this in a smaller size?</li>
+        <li>I bought this last week, but it doesn't work.</li>
+        <li>Would it be possible to get a refund?</li>
+        <li>I'm afraid there's been a mistake with the bill.</li>
+      </ul></div>
+    <div class="block"><h3>Opinions</h3>
+      <ul class="phrases">
+        <li>Personally, I think…</li>
+        <li>I see your point, but…</li>
+        <li>It depends on the situation, really.</li>
+        <li>The main reason is that…</li>
+        <li>I hadn't thought of it that way.</li>
+      </ul></div>
+  </div>
+
+  <!-- Quran plan: teaching English -->
+  <span class="eyebrow only-quran">Teaching in English</span>
+  <h2 class="only-quran">Language for class and for parents</h2>
+  <h3 class="only-quran">Tajweed terms in English</h3>
+  <div class="tablebox only-quran"><table>
+    <thead><tr><th>Term</th><th>Simple English for children</th><th>Formal English</th></tr></thead>
+    <tbody>
+      <tr><td>Makharij</td><td>where the sound comes from</td><td>articulation points</td></tr>
+      <tr><td>Harakat</td><td>the little marks that tell you which vowel to say</td><td>short vowels (fatha, kasra, damma)</td></tr>
+      <tr><td>Sukun</td><td>stop the letter, no vowel</td><td>absence of a vowel</td></tr>
+      <tr><td>Shaddah</td><td>say the letter twice, press on it</td><td>doubling / gemination</td></tr>
+      <tr><td>Madd</td><td>stretch the sound for 2 (or 4, or 6) counts</td><td>prolongation / elongation</td></tr>
+      <tr><td>Ghunnah</td><td>the humming sound in your nose</td><td>nasalization</td></tr>
+      <tr><td>Qalqalah</td><td>the little bounce or echo</td><td>echoing / vibration</td></tr>
+      <tr><td>Izhar · Idgham · Iqlab · Ikhfa'</td><td>say it clearly · merge it · change it to m · hide it</td><td>clear pronunciation · merging · conversion · concealment</td></tr>
+      <tr><td>Waqf</td><td>where we stop and take a breath</td><td>pausing / stopping rules</td></tr>
+    </tbody>
+  </table></div>
+  <div class="pairs only-quran">
+    <div class="block"><h3>In class</h3>
+      <ul class="phrases">
+        <li>Let's begin with Al-Fatiha.</li>
+        <li>Listen carefully, then repeat after me.</li>
+        <li>Your turn. Take your time.</li>
+        <li>Stretch this sound for two counts.</li>
+        <li>Can you hear the difference?</li>
+        <li>Put your finger on the letter.</li>
+        <li>Close your lips gently on this one.</li>
+        <li>Almost! Let's try that again, slowly.</li>
+        <li>Excellent, masha'Allah! That was really clear.</li>
+        <li>Who can tell me what this sign means?</li>
+      </ul></div>
+    <div class="block"><h3>With parents</h3>
+      <ul class="phrases">
+        <li>She's making great progress with her letters.</li>
+        <li>He's finding the long vowels a bit tricky at the moment.</li>
+        <li>Could you listen to him read for ten minutes each day?</li>
+        <li>Next week we'll focus on the rules of noon sakinah.</li>
+        <li>She's ready to start memorising Surat An-Naba'.</li>
+        <li>Please don't worry; this is very normal at this stage.</li>
+        <li>Do you have any questions about her progress?</li>
+        <li>Thank you for your support at home. It really shows.</li>
+      </ul></div>
+    <div class="block"><h3>Telling a story</h3>
+      <ul class="phrases">
+        <li>A long, long time ago, Allah sent a prophet called…</li>
+        <li>His people didn't want to listen to him.</li>
+        <li>But he never gave up. He was patient.</li>
+        <li>Then something amazing happened…</li>
+        <li>What do you think he did next?</li>
+        <li>So what can we learn from this story?</li>
+      </ul></div>
+  </div>
+  <p class="only-quran">For ideas on teaching young learners (class routines, games, praise, managing behaviour) in English, browse the free British Council site <a href="https://www.teachingenglish.org.uk" target="_blank" rel="noopener">TeachingEnglish</a>. For the meanings of verses in English, use <a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> (several translations) and the word-by-word view on <a href="https://corpus.quran.com" target="_blank" rel="noopener">Quranic Arabic Corpus</a>.</p>
+</section>
+
+<section id="practice">
+  <span class="eyebrow">Speaking practice · both plans</span>
+  <h2>Three ways to get speaking time</h2>
+  <div class="routine">
+    <div class="block"><h3>1 · Record yourself</h3><p>The most important habit. Speak for 1–2 minutes, listen back, note 3 things to improve, then record again. Any mistake you hear more than once goes on your top-mistakes list. Compare recordings month by month.</p></div>
+    <div class="block"><h3>2 · Talk with people, twice a week</h3><p>Real conversation is where speaking grows fastest: 30 minutes on Wednesday and 15 minutes on Monday. Language exchange on <a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> or <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a> (free tiers): you teach Arabic, they help with English. Or join a free online study circle held in English.</p></div>
+    <div class="block"><h3>3 · Talk with AI</h3><p>Free voice chat in the ChatGPT or Gemini app, as extra practice or when no one is free. Free tiers have daily limits, so 15 minutes is the right size. Use the prompt below.</p></div>
+  </div>
+  <h3>AI speaking partner prompt</h3>
+  <div class="prompt" id="ai-prompt"><span class="only-general">You are my English speaking partner. I am a B2 learner and I want to speak more fluently in everyday life. Today we will talk about: [TOPIC].</span><span class="only-quran">You are my English speaking partner. I am a B2 learner and I teach Quran to young children who don't speak Arabic. Today we will talk about: [TOPIC].</span>
+
+Rules:
+- Keep each of your turns short (2–3 sentences) and always end with a question, so I do most of the talking.
+- Speak naturally, at normal speed.
+- After every 5 of my answers, stop and give me: 3 mistakes I made with the correct version, 2 more natural ways to say something I said, and 1 useful phrase for my topic.
+- If I pause for a long time, help me with the first words of a sentence.</div>
+  <button class="copy" id="copy-btn" type="button">Copy prompt</button>
+  <p class="only-general"><b>Topic ideas:</b> your neighbourhood · a meal you cook well · a problem with a delivery · a trip you remember · your dream holiday · is social media good for children? · how life has changed since you were young.</p>
+  <p class="only-quran"><b>Topic ideas:</b> this week's prophet story · explain what tajweed is to a curious neighbour · a parent says their child is bored in class · your best and hardest teaching day · plan a lesson on qalqalah · should children learn Quran online or in person?</p>
+  <div class="note"><p><b>Staying safe with strangers online:</b> choose female partners, keep chats inside the app, don't share your phone number, address or photos, and leave any chat that feels uncomfortable. A sister, friend or colleague who speaks English is always a good first partner.</p></div>
+</section>
+
+<section id="resources" class="res">
+  <span class="eyebrow">Everything here is free</span>
+  <h2>Free resources</h2>
+
+  <h3>Speaking tests and feedback</h3>
+  <ul>
+    <li><a href="https://speakandimprove.com" target="_blank" rel="noopener">Cambridge Speak &amp; Improve</a><span>Free speaking practice tests with an automatic CEFR score. Use in weeks 0, 6 and 12.</span></li>
+    <li><a href="https://www.efset.org" target="_blank" rel="noopener">EF SET</a><span>Free reading and listening test with a CEFR result, for the final check.</span></li>
+    <li><a href="https://writeandimprove.com" target="_blank" rel="noopener">Cambridge Write &amp; Improve</a><span>Free writing feedback. Optional, for messages and emails.</span></li>
+  </ul>
+
+  <h3 class="only-general">Listening and shadowing</h3>
+  <ul class="only-general">
+    <li><a href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener">BBC Learning English</a><span>6 Minute English (new episodes weekly, with transcripts and worksheets), plus pronunciation videos.</span></li>
+    <li><a href="https://learnenglish.britishcouncil.org/skills/speaking" target="_blank" rel="noopener">British Council LearnEnglish · Speaking</a><span>B1–C1 speaking lessons with audio and transcripts.</span></li>
+    <li><a href="https://teacherluke.co.uk" target="_blank" rel="noopener">Luke's English Podcast</a><span>Long, natural conversations for upper-intermediate listeners. Good from phase 2.</span></li>
+    <li><a href="https://www.youtube.com/@TEDEd" target="_blank" rel="noopener">TED-Ed</a><span>Short, clear explanations of interesting topics.</span></li>
+  </ul>
+
+  <h3 class="only-quran">Quran and Islamic listening in English</h3>
+  <ul class="only-quran">
+    <li><a href="https://theclearevidence.org/aspects-of-life/quran/video-series-lessons-from-the-stories-of-the-prophets-as-in-the-noble-quraan-all-episodes-dr-mufti-ismail-menk-english/" target="_blank" rel="noopener">Stories of the Prophets · Mufti Menk</a><span>29 free English episodes (video and audio), Adam to Muhammad ﷺ. Your main shadowing source.</span></li>
+    <li><a href="https://yaqeeninstitute.org" target="_blank" rel="noopener">Yaqeen Institute</a><span>Lectures and short videos in clear English. Good for Friday listening and religious vocabulary.</span></li>
+    <li><a href="https://quran.com" target="_blank" rel="noopener">Quran.com</a> · <a href="https://corpus.quran.com" target="_blank" rel="noopener">Quranic Arabic Corpus</a><span>English translations and word-by-word meanings, for explaining verses to students.</span></li>
+    <li><a href="https://www.youtube.com/results?search_query=Omar+and+Hana+stories+of+the+prophets" target="_blank" rel="noopener">Omar &amp; Hana (YouTube)</a><span>Prophet stories and songs in English for children: shows the simple language kids understand.</span></li>
+    <li><a href="https://www.youtube.com/results?search_query=Zaky+One4Kids+prophet+story" target="_blank" rel="noopener">Zaky · One4Kids (YouTube)</a><span>Children's prophet stories in English. The YouTube videos are free; their separate app is paid, so skip it.</span></li>
+    <li><a href="https://www.teachingenglish.org.uk" target="_blank" rel="noopener">British Council TeachingEnglish</a><span>Classroom language and activities for young learners.</span></li>
+    <li><a href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener">BBC Learning English</a><span>For variety on light days: short everyday-English episodes with transcripts.</span></li>
+  </ul>
+
+  <h3>Pronunciation</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/@rachelsenglish" target="_blank" rel="noopener">Rachel's English</a><span>Detailed mouth-position videos, American English.</span></li>
+    <li><a href="https://www.youtube.com/@EnglishwithLucy" target="_blank" rel="noopener">English with Lucy</a><span>Pronunciation and vocabulary, British English.</span></li>
+    <li><a href="https://youglish.com" target="_blank" rel="noopener">YouGlish</a><span>Hear any word spoken in real videos.</span></li>
+    <li><a href="https://dictionary.cambridge.org" target="_blank" rel="noopener">Cambridge Dictionary</a><span>UK and US audio, phonetic spelling and example sentences.</span></li>
+  </ul>
+
+  <h3>Conversation and review</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/@SpeakEnglishWithVanessa" target="_blank" rel="noopener">Speak English with Vanessa</a><span>Everyday spoken expressions and conversation practice.</span></li>
+    <li><a href="https://www.tandem.net" target="_blank" rel="noopener">Tandem</a> · <a href="https://www.hellotalk.com" target="_blank" rel="noopener">HelloTalk</a><span>Language exchange partners (free tiers).</span></li>
+    <li><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a> · <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><span>Voice chat on the free tier, within daily limits.</span></li>
+    <li><a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a><span>Free flashcards (Android and computer; iPhone users use AnkiWeb in the browser).</span></li>
+  </ul>
+</section>
+
+<section id="progress">
+  <span class="eyebrow">Checking progress</span>
+  <h2>How you'll know it's working</h2>
+  <div class="tablebox"><table>
+    <thead><tr><th>When</th><th>Check</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Week 0</td><td>Speak &amp; Improve test, 2-minute recording</td><td>Your starting point</td></tr>
+      <tr><td>Week 4</td><td>Re-record the same 2-minute topic</td><td>Fewer long pauses, clear p/b and f/v</td></tr>
+      <tr><td>Week 6</td><td>Speak &amp; Improve test</td><td>Same or higher in every part</td></tr>
+      <tr><td>Week 8</td><td>Re-record <span class="only-general">+ a 3-minute talk on a new topic</span><span class="only-quran">+ 5-minute mock lesson</span></td><td>Speak 2–3 minutes without stopping</td></tr>
+      <tr><td>Week 12</td><td>Speak &amp; Improve + EF SET <span class="only-general">+ a 5-minute opinion talk</span><span class="only-quran">+ 10-minute demo lesson</span></td><td><span class="only-general">Talk about any everyday topic with confidence, from no notes</span><span class="only-quran">Teach a full lesson in English from short notes only</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>After week 12</h3>
+  <ul>
+    <li>Try the other plan for the next 12 weeks, or repeat this one with harder material (Luke's English Podcast and full English lectures).</li>
+    <li>Pick new sounds from your own recordings: the mistakes you still hear most.</li>
+    <li>Keep one live conversation every week. It matters more than any app.</li>
+    <li class="only-quran">Teach one real class, or part of a class, in English each week if your students allow it.</li>
+  </ul>
+</section>
+
+<div class="backup" id="backup">
+  <h2>Keep your progress safe</h2>
+  <p>Your ticks are saved on this phone. Your backup code holds all of them. Send it to yourself on WhatsApp after you tick something, and you can bring your progress back on any phone or browser.</p>
+  <div class="code" id="backup-code" aria-live="polite">EP1-0</div>
+  <div class="btns">
+    <button type="button" class="btn2" id="copy-code">Copy code</button>
+    <a class="btn2" id="wa-code" href="https://wa.me/" target="_blank" rel="noopener">Send to my WhatsApp</a>
+  </div>
+  <label for="restore-input"><b>Lost your ticks?</b> Paste your last code here:</label>
+  <div class="restore">
+    <input type="text" id="restore-input" placeholder="EP1-…" autocomplete="off" spellcheck="false">
+    <button type="button" class="btn2" id="restore-btn">Restore</button>
+  </div>
+  <p class="msg" id="restore-msg"></p>
+  <p class="tips"><b>Open it like an app:</b> on Android, open the link in Chrome, tap ⋮ and choose <i>Add to Home screen</i>. On iPhone, open it in Safari, tap Share and choose <i>Add to Home Screen</i>. Always open the plan from that icon so your ticks stay in one place.</p>
+</div>
+
+<footer>
+  All links were free at the time of writing. App free tiers can change; if one starts asking for payment, swap it for another resource in the same group.
+</footer>
+</div>
+
+<script>
+const SOUNDS = [
+  "/p/ vs /b/: pen, Ben, park",
+  "/f/ vs /v/: fan, van, save",
+  "Short vs long vowels: ship, sheep",
+  "Word stress: TEAcher, eDUcation",
+  "Consonant clusters: street, months",
+  "-ed and -s endings: asked, wanted, teaches",
+  "More vowels: full, fool, cat, cut",
+  "Sentence stress: the most important word",
+  "/tʃ/ vs /ʃ/ and /ŋ/: chair, share, sing",
+  "Intonation: questions, lists, polite tone",
+  "Linking and weak forms: pick it up, to, for",
+  "Review your 3 biggest problem sounds"
+];
+const PLANS = {
+  general: {
+    rows: ["Topic"],
+    weeks: [
+      ["Introducing yourself and small talk"],
+      ["Home, family and daily routine"],
+      ["Shopping, prices and asking for things"],
+      ["Phone calls and appointments. Re-record your 2-minute topic"],
+      ["Health and visiting the doctor"],
+      ["Travel and directions. Speak & Improve test"],
+      ["Telling stories about the past"],
+      ["Work and your teaching job. Re-record"],
+      ["Giving opinions, agreeing and disagreeing"],
+      ["Solving problems and complaining politely"],
+      ["News and big topics: education, technology"],
+      ["5-minute opinion talk. Final tests"]
+    ]
+  },
+  quran: {
+    rows: ["Teach", "Story"],
+    weeks: [
+      ["Greetings, classroom instructions, praise", "Prophet Adam"],
+      ["Explaining letters and makharij", "Prophet Nuh"],
+      ["Harakat, sukun and shaddah", "Prophets Hud and Salih"],
+      ["Madd: stretching sounds. Re-record your 2-minute topic", "Prophet Ibrahim"],
+      ["Noon sakinah: izhar and idgham", "Prophet Yusuf"],
+      ["Iqlab and ikhfa'. Speak & Improve test", "Prophet Ayyub"],
+      ["Ghunnah and qalqalah", "Prophet Musa"],
+      ["Telling stories to children. Re-record", "Prophet Yunus"],
+      ["Talking to parents: progress and homework", "Prophets Dawud and Sulayman"],
+      ["Handling questions and class behaviour", "Prophet Isa and Maryam"],
+      ["Explaining the meaning of short surahs simply", "Prophet Muhammad ﷺ: the first revelation"],
+      ["Full 10-minute demo lesson. Final tests", "Your favourite story, told your own way"]
+    ]
+  }
+};
+const MEM={};
+function store(k,v){
+  if(v===undefined){try{const x=localStorage.getItem(k);if(x!==null)return x}catch(e){}return MEM[k]===undefined?null:MEM[k]}
+  MEM[k]=v;try{localStorage.setItem(k,v)}catch(e){}
+}
+const KEYS=["s1","s2","s3","s4","s5g","s5q","s6","s7"]
+  .concat(Array.from({length:12},(_,i)=>"general-w"+(i+1)),Array.from({length:12},(_,i)=>"quran-w"+(i+1)));
+function encodeProgress(){
+  let n=0n;
+  KEYS.forEach((k,i)=>{if(store("tqsp-"+k)==="1")n|=1n<<BigInt(i)});
+  return "EP1-"+n.toString(36).toUpperCase();
+}
+function decodeProgress(code){
+  const m=/^EP1-([0-9A-Z]+)$/i.exec(String(code).replace(/\s+/g,""));
+  if(!m)return null;
+  let n=0n;
+  for(const ch of m[1].toLowerCase()){const d=parseInt(ch,36);if(isNaN(d))return null;n=n*36n+BigInt(d)}
+  if(n>=(1n<<BigInt(KEYS.length)))return null;
+  return KEYS.map((_,i)=>((n>>BigInt(i))&1n)===1n);
+}
+function updateCode(){
+  const code=encodeProgress();
+  document.getElementById("backup-code").textContent=code;
+  document.getElementById("wa-code").href="https://wa.me/?text="+encodeURIComponent("My English plan backup code: "+code);
+}
+
+function renderWeeks(plan){
+  const cfg=PLANS[plan];
+  [1,2,3].forEach(p=>{document.getElementById("weeks-"+p).textContent=""});
+  cfg.weeks.forEach((vals,i)=>{
+    const n=i+1, id=plan+"-w"+n;
+    const box=document.getElementById("weeks-"+Math.ceil(n/4));
+    const card=document.createElement("div");
+    card.className="week";
+    const top=document.createElement("div");top.className="week-top";
+    top.innerHTML=`<b>Week ${n}</b><label for="${id}"><input type="checkbox" id="${id}">Done</label>`;
+    card.appendChild(top);
+    const addRow=(label,text,cls)=>{const r=document.createElement("div");r.className="row";const a=document.createElement("span");a.textContent=label;const b=document.createElement("span");b.textContent=text;if(cls)b.className=cls;r.append(a,b);card.appendChild(r)};
+    addRow("Sound",SOUNDS[i],"sound ipa");
+    cfg.rows.forEach((label,j)=>addRow(label,vals[j]));
+    const cb=top.querySelector("input");
+    const k="tqsp-"+id;
+    cb.checked=store(k)==="1";
+    card.classList.toggle("done",cb.checked);
+    cb.addEventListener("change",()=>{store(k,cb.checked?"1":"0");card.classList.toggle("done",cb.checked);updateCode()});
+    box.appendChild(card);
+  });
+}
+
+function refreshSetup(){
+  document.querySelectorAll(".checks input[data-key]").forEach(cb=>{cb.checked=store("tqsp-"+cb.dataset.key)==="1"});
+}
+document.querySelectorAll(".checks input[data-key]").forEach(cb=>{
+  cb.addEventListener("change",()=>{store("tqsp-"+cb.dataset.key,cb.checked?"1":"0");updateCode()});
+});
+refreshSetup();
+updateCode();
+
+document.getElementById("copy-code").addEventListener("click",()=>{
+  const b=document.getElementById("copy-code"), el=document.getElementById("backup-code");
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected: press Copy"};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.textContent).then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy code",1800)},fallback)}else{fallback()}
+});
+document.getElementById("restore-btn").addEventListener("click",()=>{
+  const msg=document.getElementById("restore-msg");
+  const bits=decodeProgress(document.getElementById("restore-input").value);
+  if(!bits){msg.textContent="That code doesn't look right. It should start with EP1- (copy it exactly from your WhatsApp message).";return}
+  KEYS.forEach((k,i)=>store("tqsp-"+k,bits[i]?"1":"0"));
+  refreshSetup();
+  const plan=document.body.dataset.plan;
+  if(PLANS[plan])renderWeeks(plan);
+  updateCode();
+  msg.textContent="Progress restored: "+bits.filter(Boolean).length+" ticks are back.";
+});
+
+const PLAN_NAMES={general:"General English plan",quran:"Quran English plan"};
+function showLanding(){
+  document.body.dataset.plan="none";
+  const last=store("tqsp-plan");
+  ["general","quran"].forEach(p=>{document.getElementById("last-"+p).hidden=(last!==p)});
+}
+function setPlan(plan){
+  if(!PLANS[plan]){showLanding();return}
+  document.body.dataset.plan=plan;
+  document.getElementById("current-plan").textContent=PLAN_NAMES[plan];
+  renderWeeks(plan);
+  store("tqsp-plan",plan);
+  window.scrollTo(0,0);
+}
+function go(hash){
+  try{history.pushState(null,"",hash?"#"+hash:location.pathname+location.search)}catch(e){}
+  setPlan(hash);
+}
+document.querySelectorAll(".switch button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.set)));
+document.getElementById("back-btn").addEventListener("click",()=>{go("");window.scrollTo(0,0)});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{
+  const t=document.getElementById(a.getAttribute("href").slice(1));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth"})}
+}));
+const syncFromHash=()=>{const h=location.hash.slice(1);setPlan(PLANS[h]?h:"")};
+window.addEventListener("hashchange",syncFromHash);
+window.addEventListener("popstate",syncFromHash);
+syncFromHash();
+
+const btn=document.getElementById("copy-btn");
+btn.addEventListener("click",()=>{
+  const el=document.getElementById("ai-prompt");
+  const text=el.innerText;
+  const done=()=>{btn.textContent="Copied";setTimeout(()=>btn.textContent="Copy prompt",1800)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Selected: press Copy"};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fallback)}else{fallback()}
+});
+</script>
+
+</body>
+</html>
