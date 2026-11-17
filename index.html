@@ -152,7 +152,7 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
     <span class="eyebrow">English speaking · from B1 toward B2</span>
     <button type="button" class="look-btn" id="look-btn" aria-label="Switch to light mode">☀ Light</button>
   </div>
-  <h1>Quran Teacher's Speaking Plan</h1>
+  <h1 id="page-title">Quran Teacher's Speaking Plan</h1>
   <p class="lead landing-only">Two 12-week plans for B1 learners, with the same daily routine. Choose one to open it. Every resource is free.</p>
   <div class="switch landing-only" role="group" aria-label="Choose a plan">
     <button type="button" id="btn-general" data-set="general"><small class="last" id="last-general" hidden>Last opened</small><b>General English</b><span>Everyday topics: family, food, shopping, health, travel, your plans</span><em class="go">Open plan →</em></button>
@@ -181,7 +181,8 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
   <p>At B1 you can already talk about familiar things: yourself, your family, your work. The next step, B2, is speaking <b>longer</b>, <b>more freely</b> and <b>without stopping to search for words</b>, on more topics. That comes from practice, so both plans spend most of the time on your voice: copying speakers, recording yourself, and talking with people and AI.</p>
   <p class="only-general">The <b>General plan</b> builds the English of daily life: family, food, shopping, health, travel, past experiences, plans and simple opinions.</p>
   <p class="only-quran">The <b>Quran plan</b> uses the material you already love: prophets' stories told in simple English for children, tajweed explained in English, and the meanings of the surahs you teach. About a third of the time (conversations, AI chats) stays on everyday English, so daily life improves too.</p>
-  <p>You also have a rare advantage. Tajweed trained your ear and mouth to notice exact articulation points (<span class="ar">مخارج</span>). Both plans use that skill for English sounds.</p>
+  <p class="only-quran">You also have a rare advantage. Tajweed trained your ear and mouth to notice exact articulation points (<span class="ar">مخارج</span>). This plan uses that skill for English sounds.</p>
+  <p class="only-general">As an Arabic speaker you already have some English sounds (like <span class="ar">ث</span> in <i>think</i>), and the others can be learned by comparing them with Arabic letters you know. The pronunciation section shows how.</p>
   <h3>Why this works</h3>
   <ul>
     <li><b>A balanced diet of English.</b> Paul Nation's "four strands" model gives roughly equal time to listening, speaking, studying phrases and fluency practice. The daily routine follows that balance.</li>
@@ -288,9 +289,11 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
 </section>
 
 <section id="sounds">
-  <span class="eyebrow">Pronunciation for Arabic speakers · both plans</span>
-  <h2>Use your tajweed ear</h2>
-  <p>You already know where each Arabic letter comes from in the mouth. Many English sounds map neatly onto that knowledge.</p>
+  <span class="eyebrow">Pronunciation for Arabic speakers</span>
+  <h2 class="only-quran">Use your tajweed ear</h2>
+  <h2 class="only-general">English sounds for Arabic speakers</h2>
+  <p class="only-quran">You already know where each Arabic letter comes from in the mouth. Many English sounds map neatly onto that knowledge.</p>
+  <p class="only-general">Most English sounds are close to an Arabic letter you already say every day. Start from that letter, then change one small thing.</p>
   <div class="tablebox"><table>
     <thead><tr><th>English sound</th><th>Arabic bridge</th><th>Practise with</th></tr></thead>
     <tbody>
@@ -300,9 +303,9 @@ footer{color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padd
       <tr><td class="ipa">Short and long vowels</td><td>Arabic has 3 vowel qualities; English has about 12. Length alone is not enough: the mouth shape changes too.</td><td>ship / sheep, full / fool, cat / cut / cot, bed / bad</td></tr>
       <tr><td class="ipa">Consonant clusters</td><td>English allows several consonants together. Do not add a vowel before or between them.</td><td>street (not "estreet"), spring, months, asked</td></tr>
       <tr><td class="ipa">/tʃ/ vs /ʃ/</td><td>/ʃ/ is <span class="ar">ش</span>. /tʃ/ starts with a short /t/ stop.</td><td>chair / share, watch / wash, cheap / sheep</td></tr>
-      <tr><td class="ipa">/ŋ/ sing</td><td>Like the nasal sound in ikhfa' before <span class="ar">ك</span>: the back of the tongue closes, with no /g/ after it.</td><td>sing, long, morning, teaching</td></tr>
-      <tr><td class="ipa">English r</td><td>Not the tapped <span class="ar">ر</span>. The tongue curls back and does not touch the roof of the mouth.</td><td>read, very, correct, Quran</td></tr>
-      <tr><td class="ipa">Word stress</td><td>Like madd, length and strength matter. One syllable in each word is longer and louder.</td><td>TEAcher, eDUcation, PRACtise, underSTAND</td></tr>
+      <tr><td class="ipa">/ŋ/ sing</td><td><span class="only-quran">Like the nasal sound in ikhfa' before <span class="ar">ك</span>: the</span><span class="only-general">Like the <span class="ar">ن</span> in <span class="ar">منكم</span>, said further back: the</span> back of the tongue closes, with no /g/ after it.</td><td>sing, long, morning, teaching</td></tr>
+      <tr><td class="ipa">English r</td><td>Not the tapped <span class="ar">ر</span>. The tongue curls back and does not touch the roof of the mouth.</td><td>read, very, correct, <span class="only-quran">Quran</span><span class="only-general">tomorrow</span></td></tr>
+      <tr><td class="ipa">Word stress</td><td><span class="only-quran">Like madd, length and strength matter.</span><span class="only-general">Arabic words have stress too (<span class="ar">مَدرَسة</span>).</span> One syllable in each English word is longer and louder, and the wrong one can make a word hard to understand.</td><td>TEAcher, eDUcation, PRACtise, underSTAND</td></tr>
     </tbody>
   </table></div>
   <p>Check any word's stress and sound in the <a href="https://dictionary.cambridge.org" target="_blank" rel="noopener">Cambridge Dictionary</a> (UK and US audio), and hear it in real sentences on <a href="https://youglish.com" target="_blank" rel="noopener">YouGlish</a>. The aim is to be clear, not to copy one accent; British and American sources are both fine.</p>
@@ -523,7 +526,7 @@ const PLANS = {
       ["Health and visiting the doctor"],
       ["Travel, directions and transport. Speak & Improve test"],
       ["Telling stories about the past"],
-      ["Work and your teaching job. Re-record + 2-minute story"],
+      ["Work, studies and your skills. Re-record + 2-minute story"],
       ["Plans and hopes for the future"],
       ["Simple opinions: agreeing and disagreeing"],
       ["Problems and polite complaints"],
@@ -618,6 +621,7 @@ document.querySelectorAll(".checks input[data-key]").forEach(cb=>{
 const PLAN_NAMES={general:"General English plan · B1",quran:"Quran English plan · B1"};
 function showLanding(){
   document.body.dataset.plan="none";
+  document.getElementById("page-title").textContent="Quran Teacher's Speaking Plan";
   const last=store("tqsp-plan");
   ["general","quran"].forEach(p=>{document.getElementById("last-"+p).hidden=(last!==p)});
 }
@@ -625,6 +629,7 @@ function setPlan(plan){
   if(!PLANS[plan]){showLanding();return}
   document.body.dataset.plan=plan;
   document.getElementById("current-plan").textContent=PLAN_NAMES[plan];
+  document.getElementById("page-title").textContent=plan==="general"?"General English Plan":"Quran English Plan";
   renderWeeks(plan);
   store("tqsp-plan",plan);
   window.scrollTo(0,0);
